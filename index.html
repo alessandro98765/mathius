@@ -1,12 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Juego de Mathius</title>
+
+    <style>
+        body{
+            margin:0;
+            overflow:hidden;
+            background:black;
+            font-family:Arial;
+            text-align:center;
+        }
+
+        h1{
+            color:white;
+            margin-top:10px;
+        }
+
+        #score{
+            color:yellow;
+            font-size:25px;
+            margin-bottom:10px;
+        }
+
+        #mathius{
+            width:120px;
+            position:absolute;
+            cursor:pointer;
+            transition:0.1s;
+        }
+    </style>
 </head>
 <body>
-    <h1>Chifon de matos</h1>
-    <img src="mathius.jpg" alt="">
+
+    <h1>¡Atrapa a Mathius!</h1>
+    <div id="score">Puntos: 0</div>
+
+    <img src="mathius.jpg" id="mathius" alt="Mathius">
+
+    <script>
+        let puntos = 0;
+
+        const img = document.getElementById("mathius");
+        const score = document.getElementById("score");
+
+        function moverMathius(){
+            let x = Math.random() * (window.innerWidth - 120);
+            let y = Math.random() * (window.innerHeight - 120);
+
+            img.style.left = x + "px";
+            img.style.top = y + "px";
+        }
+
+        img.addEventListener("click", function(){
+            puntos++;
+            score.innerHTML = "Puntos: " + puntos;
+
+            moverMathius();
+        });
+
+        // mover cada 1 segundo
+        setInterval(moverMathius, 1000);
+
+        moverMathius();
+    </script>
+
 </body>
 </html>
